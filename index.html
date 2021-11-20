@@ -1,68 +1,190 @@
-
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-	<title>JS单行文字循环滚动代码</title>
-<style type="text/css">
-#block2{height:23px;width:500px;border:#ccc 1px solid;font-size:12px;text-align:center;}
-#block2 ul{list-style:outside none none;height:15px;padding:3px 0;overflow:hidden;margin:0;}
-#block2 ul li{float:left;display:inline;margin:2px 0;height:14px;width:24.9%;}
-#block2 ul li a{text-decoration:none;}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>贫穷网--在线要🍚</title>
+  <meta name="description" content="帮助我快速脱离贫穷">
+  <meta name="keywords" content="要饭网,乞丐网,网络要饭,贫穷网,在线要饭">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="./static/payment.css">
+  <link rel="shortcut icon" href="/favicon.ico">
+<style>
+/* customizable snowflake styling */
+.snowflake {
+  color: #fff;
+  font-size: 1em;
+  font-family: Arial, sans-serif;
+  text-shadow: 0 0 5px #000;
+}
+ .grecaptcha-badge {
+		visibility: hidden !important;
+ }
+@-webkit-keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@-webkit-keyframes snowflakes-shake{0%,100%{-webkit-transform:translateX(0);transform:translateX(0)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}}@keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@keyframes snowflakes-shake{0%,100%{transform:translateX(0)}50%{transform:translateX(80px)}}.snowflake{position:fixed;top:-10%;z-index:9999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall,snowflakes-shake;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:10s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running}.snowflake:nth-of-type(0){left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s}.snowflake:nth-of-type(1){left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s}.snowflake:nth-of-type(2){left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s}.snowflake:nth-of-type(3){left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s}.snowflake:nth-of-type(4){left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s}.snowflake:nth-of-type(5){left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s}.snowflake:nth-of-type(6){left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s}.snowflake:nth-of-type(7){left:70%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s}.snowflake:nth-of-type(8){left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s}.snowflake:nth-of-type(9){left:90%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,1.5s}.snowflake:nth-of-type(10){left:25%;-webkit-animation-delay:2s,0s;animation-delay:2s,0s}.snowflake:nth-of-type(11){left:65%;-webkit-animation-delay:4s,2.5s;animation-delay:4s,2.5s}
 </style>
-  </head>
-  <body>
-	<div id="block2">
-	  <ul id="rolltxt">
-		<li><a href="#">单行文字滚动</a></li>
-		<li><a href="#">文字上下滚动</a></li>
-		<li><a href="#">无缝循环滚动</a></li>
-		<li><a href="#">文字滚动</a></li>
-		<li><a href="#">文字循环</a></li>
-		<li><a href="#">上下滚动</a></li>
-		<li><a href="#">文字滚动</a></li>
-		<li><a href="#">滚动文字</a></li>
-		<li><a href="#">滚动测试</a></li>
-		<li><a href="#">单行滚动</a></li>
-		<li><a href="#">无缝循环</a></li>
-		<li><a href="#">文字滚动</a></li>
-		<li><a href="#">上下滚动</a></li>
-		<li><a href="#">无缝滚动</a></li>
-		<li><a href="#">滚动文字</a></li>
-		<li><a href="#">无缝循环文字</a></li>
-	  </ul>
-	</div>
-<script type="text/javascript">
-function extractNodes(pNode){
-	if(pNode.nodeType == 3)return null;
-	var node,nodes = new Array();
-	for(var i=0;node= pNode.childNodes[i];i++){
-		if(node.nodeType == 1)nodes.push(node);
-	}
-	return nodes;
-}
-var obj=document.getElementById("rolltxt");
-for(i=0;i<4;i++){
-	obj.appendChild(extractNodes(obj)[i].cloneNode(true));
-}
-settime=0;
-var t=setInterval(rolltxt,50);
-function rolltxt(){
-	if(obj.scrollTop % (obj.clientHeight-5) ==0){
-		settime+=1;
-		if(settime==50){
-			obj.scrollTop+=1;
-			settime=0;
-		}
-	}else{
-		obj.scrollTop+=1;
-		if(obj.scrollTop==(obj.scrollHeight-obj.clientHeight)){
-			obj.scrollTop=0;
-		}
-	}
-}
-obj.onmouseover=function(){clearInterval(t)}
-obj.onmouseout=function(){t=setInterval(rolltxt,50)}
-</script>
-  </body>
-</html>
 
+</head>
+<body>
+  <audio id="myaudio" src="static/wuyueyu.mp3" autoplay="autoplay" controls="controls" loop="loop" 
+	preload="preload">
+   
+  </audio>
+
+<script type="text/javascript">
+    document.getElementById("myaudio").play();
+</script>
+  
+  
+	
+<div class="snowflakes" aria-hidden="true">
+ <div class="snowflake">2021</div>
+ <div class="snowflake">变有钱</div>
+ <div class="snowflake">暴富</div>
+ <div class="snowflake">努力</div>
+ <div class="snowflake">奋斗</div>
+ <div class="snowflake">💸</div>
+ <div class="snowflake">¥</div>
+ <div class="snowflake">$</div>
+ <div class="snowflake">¥</div>
+ <div class="snowflake">$</div>
+ <div class="snowflake">¥</div>
+ <div class="snowflake">$</div>
+ <div class="snowflake">¥</div>
+ <div class="snowflake">$</div>
+ <div class="snowflake">¥</div>
+ <div class="snowflake">$</div>
+ <div class="snowflake">¥</div>
+ <div class="snowflake">$</div>
+ <div class="snowflake">❅</div>
+ <div class="snowflake">❆</div>
+ <div class="snowflake">❅</div>
+ <div class="snowflake">❆</div>
+ <div class="snowflake">❅</div>
+ <div class="snowflake">❆</div>
+ <div class="snowflake">❅</div>
+ <div class="snowflake">❆</div>
+ <div class="snowflake">❅</div>
+ <div class="snowflake">❆</div>
+ <div class="snowflake">❅</div>
+ <div class="snowflake">❆</div>
+ <div class="snowflake">❅</div>
+ <div class="snowflake">❆</div>
+ <div class="snowflake">❅</div>
+ <div class="snowflake">❆</div>
+</div>
+  <main class="page payment-page">
+    <section class="payment-form dark">
+      <div class="container">
+       
+		
+		<div class="block-heading">
+		  
+		  
+          <h3>贫穷限制了我的想象力，创造力，巧克力。希望您能帮我摆脱贫困。</h3>
+		  </div>
+		  
+		  
+		<img class="btn btn-primary btn-block" src="static/logo.jpg"/>
+		  
+        <form method="POST" action="./pay.php" id="fupinform">
+		  
+          <div class="card-details">
+            
+            <div class="row">
+              
+
+              
+			  
+             
+              <div class="form-group col-sm-12">
+                <button type="button" class="btn btn-primary btn-block" id="btn1"><a>微信打赏</a></button>
+				<br>
+				<img class="btn btn-primary btn-block" style="display:none" id="box1" width="400" src="static/wxpay.png">
+              </div>
+			  <div class="form-group col-sm-12">
+                <button type="button" class="btn btn-primary btn-block" id="btn2"><a>QQ打赏</a></button>
+				<br>
+				<img class="btn btn-primary btn-block" style="display:none" id="box2" width="400" src="static/qqpay.png">
+              </div>
+			  <div class="form-group col-sm-12">
+                <button type="button" class="btn btn-primary btn-block" id="btn3"><a>支付宝打赏</a></button>
+				<br>
+				<img class="btn btn-primary btn-block" style="display:none" id="box3" width="400" src="static/alipay.png">
+              </div>
+			  
+			  
+			  
+			  
+	</div>
+			
+			
+          </div>
+		  
+		  
+          </form>
+		  
+		
+		
+		  
+      </div>
+	  
+	  
+         <div class="block-heading">
+         	
+		  
+           <p>Copyright Ⓒ2021 <a href="#">一个小乞丐</a> 版权所有. &nbsp;</p>
+		  
+		   
+          </div>
+		  
+	  
+	  
+    </section>
+  </main>
+
+  
+  <script type="text/javascript">
+var box1 = document.getElementById("box1");
+var btn1 = document.getElementById("btn1");
+             
+btn1.onclick = function(event){
+    event.stopPropagation();
+    if(box1.style.display == "none"){
+        box1.style.display = "block";
+    }else{
+        box1.style.display = "none";
+    }
+};
+var box2 = document.getElementById("box2");
+var btn2 = document.getElementById("btn2");
+             
+btn2.onclick = function(event){
+    event.stopPropagation();
+    if(box2.style.display == "none"){
+        box2.style.display = "block";
+    }else{
+        box2.style.display = "none";
+    }
+};
+
+var box3 = document.getElementById("box3");
+var btn3 = document.getElementById("btn3");
+             
+btn3.onclick = function(event){
+    event.stopPropagation();
+    if(box3.style.display == "none"){
+        box3.style.display = "block";
+    }else{
+        box3.style.display = "none";
+    }
+};
+
+</script>  
+  
+<script type="text/javascript" src="app.js"></script>
+
+
+  
+</body>
+</html>
