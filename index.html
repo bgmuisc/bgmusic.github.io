@@ -1,0 +1,68 @@
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+	<title>JS单行文字循环滚动代码</title>
+<style type="text/css">
+#block2{height:23px;width:500px;border:#ccc 1px solid;font-size:12px;text-align:center;}
+#block2 ul{list-style:outside none none;height:15px;padding:3px 0;overflow:hidden;margin:0;}
+#block2 ul li{float:left;display:inline;margin:2px 0;height:14px;width:24.9%;}
+#block2 ul li a{text-decoration:none;}
+</style>
+  </head>
+  <body>
+	<div id="block2">
+	  <ul id="rolltxt">
+		<li><a href="#">单行文字滚动</a></li>
+		<li><a href="#">文字上下滚动</a></li>
+		<li><a href="#">无缝循环滚动</a></li>
+		<li><a href="#">文字滚动</a></li>
+		<li><a href="#">文字循环</a></li>
+		<li><a href="#">上下滚动</a></li>
+		<li><a href="#">文字滚动</a></li>
+		<li><a href="#">滚动文字</a></li>
+		<li><a href="#">滚动测试</a></li>
+		<li><a href="#">单行滚动</a></li>
+		<li><a href="#">无缝循环</a></li>
+		<li><a href="#">文字滚动</a></li>
+		<li><a href="#">上下滚动</a></li>
+		<li><a href="#">无缝滚动</a></li>
+		<li><a href="#">滚动文字</a></li>
+		<li><a href="#">无缝循环文字</a></li>
+	  </ul>
+	</div>
+<script type="text/javascript">
+function extractNodes(pNode){
+	if(pNode.nodeType == 3)return null;
+	var node,nodes = new Array();
+	for(var i=0;node= pNode.childNodes[i];i++){
+		if(node.nodeType == 1)nodes.push(node);
+	}
+	return nodes;
+}
+var obj=document.getElementById("rolltxt");
+for(i=0;i<4;i++){
+	obj.appendChild(extractNodes(obj)[i].cloneNode(true));
+}
+settime=0;
+var t=setInterval(rolltxt,50);
+function rolltxt(){
+	if(obj.scrollTop % (obj.clientHeight-5) ==0){
+		settime+=1;
+		if(settime==50){
+			obj.scrollTop+=1;
+			settime=0;
+		}
+	}else{
+		obj.scrollTop+=1;
+		if(obj.scrollTop==(obj.scrollHeight-obj.clientHeight)){
+			obj.scrollTop=0;
+		}
+	}
+}
+obj.onmouseover=function(){clearInterval(t)}
+obj.onmouseout=function(){t=setInterval(rolltxt,50)}
+</script>
+  </body>
+</html>
+
